@@ -1,2 +1,3 @@
-# blogpoint
-Django based blog application
+# BlogPoint
+
+Django based blog application.
