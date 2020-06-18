@@ -1,0 +1,54 @@
+:root {
+  --primary-color: #ffae57;
+  --secondary-color: #6e8898;
+  --white: #fffaff;
+  --shadow: #040c19;
+  --background: #0a192f;
+}
+
+body {
+  background-color: var(--background);
+}
+
+.navbar .navbar-brand {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+  color: var(--secondary-color);
+}
+
+.card {
+  background-color: var(--background);
+  border: none;
+  box-shadow: 4px 4px 12px var(--shadow);
+  padding: 1.2rem;
+}
+
+.card .card-tags {
+  margin-bottom: 0.5rem;
+}
+
+.card .card-tags span {
+  color: var(--primary-color);
+  margin-right: 0.6rem;
+  cursor: pointer;
+}
+
+.card .card-title {
+  color: var(--white);
+}
+
+.card .card-text {
+  color: var(--secondary-color);
+  margin-top: 1rem;
+}
+
+.card .card-text .post-author {
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-right: 1rem;
+  cursor: pointer;
+}

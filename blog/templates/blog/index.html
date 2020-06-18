@@ -1,6 +1,28 @@
-{% extends 'blog/base.html' %} {% block title %} BlogPoint || Home {% endblock%}
+{% extends 'blog/base.html' %} {% load static %}
+<!-- Page title -->
+{% block title %} BlogPoint || Home {% endblock%}
+
+<!-- Page content -->
 {% block content %}
-<main>
-  <h1>BlogPoint</h1>
+<main class="container mt-3">
+  {% for post in posts %}
+  <div class="card mb-3">
+    <div class="card-tags">
+      <span
+        ><img src="{% static 'blog/img/flash.svg' %}" alt="tags" height="20px"
+      /></span>
+      {% for tag in post.tags.all %}
+      <span>#{{tag}}</span>
+      {% endfor %}
+    </div>
+    <div>
+      <h4 class="card-title">{{ post.title }}</h4>
+      <p class="card-text">
+        <span class="post-author">{{ post.author.username }}</span>
+        <span>{{ post.date_published | date:'F d, Y'}}</span>
+      </p>
+    </div>
+  </div>
+  {% endfor %}
 </main>
 {% endblock %}
