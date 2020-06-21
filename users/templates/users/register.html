@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+
+<!-- Load static content -->
+{% load static %}
+
+<!-- Page title -->
+{% block title %} BlogPoint | Register {% endblock%}
+
+<!-- Main content -->
+{% block content %}
+<main class="container">
+  <div class="card form-card">
+    <h2 class="form-title">
+      <img src="{% static 'blog/img/add.svg' %}" height="30px" alt="register" />
+      Register
+    </h2>
+    <form action="{% url 'register' %}" method="POST">
+      {% csrf_token %} {% for field in form %}
+      <div class="form-group">
+        {{ field.label_tag }} {{ field }} {{ field.errors }}
+      </div>
+      {% endfor %}
+
+      <button type="submit" class="btn btn-prim">Register</button>
+    </form>
+    <div class="form-footer">
+      <span>Already have an account ?
+      <a href="#"> SignIn</a>
+    </div></span>
+  </div>
+</main>
+{% endblock %}

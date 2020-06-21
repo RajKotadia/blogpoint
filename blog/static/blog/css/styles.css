@@ -10,6 +10,11 @@ body {
   background-color: var(--background);
 }
 
+.alert {
+  background-color: var(--shadow);
+  color: var(--primary-color);
+}
+
 .navbar .navbar-brand {
   color: var(--primary-color);
   font-size: 1.4rem;
@@ -51,4 +56,93 @@ body {
   font-weight: bold;
   margin-right: 1rem;
   cursor: pointer;
+}
+
+.form-card {
+  background-color: var(--shadow);
+  box-shadow: 4px 4px 12px var(--shadow);
+  color: var(--white);
+  max-width: 350px;
+  margin: 1.5rem auto;
+  padding: 1.6rem;
+}
+
+.form-card label {
+  display: block;
+}
+
+.form-card p {
+  color: var(--white);
+}
+
+.form-card h2 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+input {
+  color: var(--white);
+  background-color: var(--shadow);
+  border: 1px solid var(--secondary-color);
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.3rem;
+  width: 100%;
+}
+
+input:focus {
+  border: 1px solid var(--primary-color);
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.btn-prim {
+  background-color: var(--shadow);
+  border-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.btn-prim:hover,
+.btn-prim:focus,
+.btn-prim:visited {
+  background-color: var(--primary-color);
+  color: var(--shadow);
+  outline: none;
+  border: 1px solid var(--primary-color);
+}
+
+.btn-prim:active {
+  background-color: var(--primary-color);
+  color: var(--shadow);
+  outline: none;
+  border: 1px solid var(--primary-color);
+}
+
+.form-card .btn {
+  display: block;
+  margin: auto;
+}
+
+.form-card .form-footer {
+  text-align: center;
+  margin-top: 1.3rem;
+}
+
+.form-card .form-footer p {
+  color: var(--secondary-color);
+  margin: 0.1rem;
+}
+
+.form-card .form-footer a {
+  color: var(--primary-color);
+}
+
+.errorlist {
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+  margin: 0;
+  padding: 0.5rem;
+  padding-left: 0rem;
+  list-style: none;
 }
