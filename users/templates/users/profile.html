@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+
+<!-- Title block -->
+{% block title %} BlogPoint | Profile - {{ user.username }} {% endblock %}
+
+<!-- Main block -->
+{% block content %}
+<main class="container">
+  <h3>{{ user.username }}</h3>
+</main>
+{% endblock %}
