@@ -109,8 +109,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# This is where the user uploaded media will be stored
+# As it is not directly stored onto the database which just stores the location of media on the File System
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# The url for media when someone requests it over the internet
+MEDIA_URL = '/media/'
+
 # The page the user should be redirected on login
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'profile'
 
 # The page the user should be redirected to on accessing a protected route 
 LOGIN_URL = 'login'

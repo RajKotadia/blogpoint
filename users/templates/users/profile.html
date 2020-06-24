@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/base.html' %} {% load static %}
 
 <!-- Title block -->
 {% block title %} BlogPoint | Profile - {{ user.username }} {% endblock %}
@@ -6,6 +6,37 @@
 <!-- Main block -->
 {% block content %}
 <main class="container">
-  <h3>{{ user.username }}</h3>
+  <div class="card dark-card profile-card">
+    <div class="base-info">
+      <div class="profile-pic">
+        <img
+          src="{{ user.profile.profile_image.url }}"
+          alt="{{ user.username }} profile picture"
+          class="rounded-circle"
+        />
+      </div>
+      <div class="profile-content">
+        <p>@{{ user.username }}</p>
+        <h2>{{ user.get_full_name }}</h2>
+        <p class="p-number"><strong>{{ user.post_set.count }}</strong> Posts</p>
+      </div>
+    </div>
+    <div class="extra-info">
+      <p class="bio">
+        {{ user.profile.bio }}
+      </p>
+
+      <span
+        ><img
+          src="{% static 'blog/img/email.svg' %}"
+          height="25px"
+          alt="email icon"
+          class="pr-2"
+        /><a href="mailto:{{ user.email }}" class="email"
+          >{{ user.email }}</a
+        ></span
+      >
+    </div>
+  </div>
 </main>
 {% endblock %}
