@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import DetailView
 from .models import Post, Tag
 
 
@@ -16,3 +17,7 @@ def home(request):
 
 def about(request):
 	return render(request, 'blog/about.html')
+
+
+class PostDetailView(DetailView):
+	model = Post

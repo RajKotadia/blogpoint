@@ -25,7 +25,9 @@
           {% endfor %}
         </div>
         <div>
-          <h4 class="card-title"><a href="#">{{ post.title }}</a></h4>
+          <h4 class="card-title">
+            <a href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+          </h4>
           <p class="card-text">
             <a href="#" class="post-author">@{{ post.author.username }}</a>
             <span>{{ post.date_published | date:'F d, Y'}}</span>
