@@ -1,42 +1,197 @@
-{% extends 'blog/base.html' %} {% load static %}
+{% extends 'blog/base.html' %}
+
+<!-- Loading static assets -->
+{% load static %}
 
 <!-- Title block -->
 {% block title %} BlogPoint | Profile - {{ user.username }} {% endblock %}
 
-<!-- Main block -->
+<!-- Content block -->
 {% block content %}
 <main class="container">
-  <div class="card dark-card profile-card">
-    <div class="base-info">
-      <div class="profile-pic">
-        <img
-          src="{{ user.profile.profile_image.url }}"
-          alt="{{ user.username }} profile picture"
-          class="rounded-circle"
-        />
-      </div>
-      <div class="profile-content">
-        <p>@{{ user.username }}</p>
-        <h2>{{ user.get_full_name }}</h2>
-        <p class="p-number"><strong>{{ user.post_set.count }}</strong> Posts</p>
-      </div>
-    </div>
-    <div class="extra-info">
-      <p class="bio">
-        {{ user.profile.bio }}
-      </p>
+  <!-- Profile Info -->
+  <div class="row">
+    <div class="col-sm-8 col-12">
+      <div class="card dark-card profile-card ml-0">
+        <div class="base-info">
+          <div class="profile-pic">
+            <img
+              src="{{ user.profile.profile_image.url }}"
+              alt="{{ user.username }} profile picture"
+              class="rounded-circle"
+            />
+          </div>
+          <div class="profile-content">
+            <p>@{{ user.username }}</p>
+            <h2>{{ user.get_full_name }}</h2>
+            <p class="p-number">
+              <strong>{{ user.post_set.count }}</strong> Posts
+            </p>
+          </div>
+          <div class="edit-profile ml-3">
+            <button class="btn btn-light edit-btn">Edit Info</button>
+          </div>
+        </div>
+        <div class="extra-info">
+          <p class="bio">
+            {{ user.profile.bio }}
+          </p>
 
-      <span
-        ><img
-          src="{% static 'blog/img/email.svg' %}"
-          height="25px"
-          alt="email icon"
-          class="pr-2"
-        /><a href="mailto:{{ user.email }}" class="email"
-          >{{ user.email }}</a
-        ></span
+          <span
+            ><img
+              src="{% static 'blog/img/email.svg' %}"
+              height="25px"
+              alt="email icon"
+              class="pr-2"
+            /><a href="mailto:{{ user.email }}" class="email"
+              >{{ user.email }}</a
+            ></span
+          >
+        </div>
+
+        <div class="edit mt-4" style="display: none;">
+          <h4 class="form-title">
+            Profile Info
+          </h4>
+          <form action="{% url 'profile' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-sm-4 col-12">
+                <div class="form-group">
+                  {{ user_form.username.label_tag }} {{ user_form.username }}
+                </div>
+              </div>
+              <div class="col-12 col-sm-5">
+                <div class="form-group">
+                  {{ user_form.email.label_tag }} {{ user_form.email }}
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-3 col-12">
+                <div class="form-group">
+                  <!-- Label -->
+                  {{ user_form.first_name.label_tag }}
+                  <!-- Input field -->
+                  {{ user_form.first_name}}
+                </div>
+              </div>
+              <div class="col-12 col-sm-3">
+                <div class="form-group">
+                  {{ user_form.last_name.label_tag }} {{ user_form.last_name }}
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="form-group image-upload">
+                  {{ profile_form.profile_image.label_tag }}
+                  <!-- input field -->
+                  {{ profile_form.profile_image }}
+                  <!-- errors -->
+                  {{ profile_form.profile_image.errors }}
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-sm-12 mb-4">
+                {{ profile_form.bio.label_tag }} {{ profile_form.bio }}
+              </div>
+            </div>
+
+            <button type="submit" class="btn d-inline btn-prim ml-1">
+              Update Profile
+            </button>
+            <a href="{% url 'profile' %}" class="btn btn-light d-inline ml-2">
+              Back
+            </a>
+          </form>
+        </div>
+      </div>
+      <p
+        class="text-center m-3"
+        style="color: var(--primary-color); text-decoration: underline;"
       >
+        {% if posts %} Your Posts {% else %} No Posts Yet!{% endif %}
+      </p>
+      {% for post in posts %}
+      <div class="card mb-3">
+        <div class="card-tags">
+          <span
+            ><img
+              src="{% static 'blog/img/flash.svg' %}"
+              alt="tags"
+              height="20px"
+          /></span>
+          {% for tag in post.tags.all %}
+          <span><a href="#"> #{{tag}}</a></span>
+          {% endfor %}
+        </div>
+        <div>
+          <h4 class="card-title"><a href="#">{{ post.title }}</a></h4>
+          <p class="card-text">
+            <a href="#" class="post-author">@{{ post.author.username }}</a>
+            <span>{{ post.date_published | date:'F d, Y'}}</span>
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="col-sm-4 col-12 mb-3">
+      <div class="card dark-card side-card mt-3 p-1">
+        <div class="card-body">
+          <h4>
+            <img
+              src="{% static 'blog/img/write.svg' %}"
+              alt="tags"
+              height="23px"
+            />
+            Share your ideas !
+          </h4>
+          <button class="btn btn-light ml-0 mt-3">Write a Post</button>
+          <h4 class="mt-4">
+            <img
+              src="{% static 'blog/img/flash.svg' %}"
+              alt="tags"
+              height="23px"
+            />
+            {% if tags %} Ideas that you write about {% else %} Lets get started
+            {% endif %}
+          </h4>
+          <div class="tags">
+            {% for tag in tags %}
+            <p><a href="#"> #{{ tag }}</a></p>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </main>
+{% endblock %}
+
+<!-- Script block -->
+{% block script %}
+<script>
+  const navLink = document.querySelector('.profile-link');
+  navLink.style.color = '#fffaff';
+
+  const editProfileButton = document.querySelector('.edit-btn');
+  const editProfile = document.querySelector('.edit');
+
+  editProfileButton.addEventListener('click', () => {
+    editProfile.style.display = 'block';
+  });
+
+  const items = document.querySelectorAll('.form-group');
+  items.forEach((item) => {
+    item.children[0].style.color = '#fffaff';
+    item.children[1].style.color = '#6e8898';
+  });
+
+  const imgDiv = document.querySelector('.image-upload');
+  imgDiv.childNodes[4].data = '';
+  imgDiv.childNodes[7].data = '';
+</script>
 {% endblock %}

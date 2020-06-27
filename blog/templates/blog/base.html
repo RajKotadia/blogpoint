@@ -15,22 +15,32 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'blog/css/styles.css' %}" />
 
+    <!-- Page title block -->
     <title>{% block title %} {% endblock %}</title>
   </head>
   <body>
     <!-- Navbar -->
     {% include 'blog/navbar.html' %}
 
-    <div class="container">
-      {% if messages %} {% for message in messages %}
-      <div class="alert">
-        {{ message }}
+    <div class="wrapper">
+      <!-- Flash messages (if any) -->
+      <div class="container">
+        {% if messages %} {% for message in messages %}
+        <div class="alert mb-0">
+          {{ message }}
+        </div>
+        {% endfor %} {% endif %}
       </div>
-      {% endfor %} {% endif %}
+
+      <!-- Main Content -->
+      {% block content %} {% endblock %}
     </div>
 
-    <!-- Main Content -->
-    {% block content %} {% endblock %}
+    <!-- footer -->
+    <footer>
+      &copy; 2020 | BlogPoint | Developed by
+      <a href="https://github.com/RajKotadia">Raj Kotadia</a>
+    </footer>
 
     <!-- Bootstrap JS -->
     <script
@@ -48,5 +58,8 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+
+    <!-- Custom JS -->
+    {% block script %} {% endblock %}
   </body>
 </html>

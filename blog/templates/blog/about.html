@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+
+<!-- Loading static assets -->
+{% load static %}
+
+<!-- Title block -->
+{% block title %} BlogPoint | About {% endblock%}
+
+<!-- Content block -->
+{% block content %}
+<main class="container mt-3">
+  <div class="card dark-card mb-3">
+    <h4 class="card-title">About BlogPoint</h4>
+    <p class="card-text">
+      BlogPoint is a Django Based blogging website mainly aimed at publishing
+      blogs related to various technologies in the field of Computer Science.
+      The blogs are categorized by various tags, so users can browse for posts
+      based on a particular Tag.
+    </p>
+  </div>
+</main>
+{% endblock %}
+
+<!-- Script block -->
+{% block script %}
+<script>
+  const navLink = document.querySelector('.about-link');
+  navLink.style.color = '#fffaff';
+</script>
+{% endblock %}

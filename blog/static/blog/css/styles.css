@@ -28,6 +28,11 @@ body {
   color: var(--white);
 }
 
+.btn {
+  display: block;
+  margin: auto;
+}
+
 .btn-prim {
   background-color: var(--shadow);
   border-color: var(--primary-color);
@@ -45,6 +50,36 @@ body {
   border: 1px solid var(--primary-color);
 }
 
+.btn-light {
+  background-color: var(--shadow);
+  border-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.btn-light:hover,
+.btn-light:active {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--shadow);
+}
+
+input {
+  color: var(--white);
+  background-color: var(--shadow);
+  border: 1px solid var(--secondary-color);
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.4rem;
+  width: 100%;
+}
+
+input:focus {
+  border: 1px solid var(--primary-color);
+  border-radius: 0.5rem;
+  outline: none;
+}
+
 /* Navbar */
 .navbar .navbar-brand {
   color: var(--primary-color);
@@ -56,8 +91,19 @@ body {
   color: var(--secondary-color);
 }
 
+/* Blog */
 .card-tags {
   margin-bottom: 0.5rem;
+}
+
+.card-tags a {
+  color: var(--primary-color);
+}
+
+.card-tags a:hover,
+.card-tags a:focus {
+  color: var(--primary-color);
+  text-decoration: underline;
 }
 
 .card-tags span {
@@ -68,6 +114,14 @@ body {
 
 .card .card-title {
   color: var(--white);
+}
+
+.card .card-title a {
+  color: var(--white);
+}
+
+.card .card-title a:hover {
+  text-decoration: none;
 }
 
 .card .card-text {
@@ -103,26 +157,6 @@ body {
   margin-bottom: 1.2rem;
 }
 
-input {
-  color: var(--white);
-  background-color: var(--shadow);
-  border: 1px solid var(--secondary-color);
-  border-radius: 0.5rem;
-  padding: 0.1rem 0.3rem;
-  width: 100%;
-}
-
-input:focus {
-  border: 1px solid var(--primary-color);
-  border-radius: 0.5rem;
-  outline: none;
-}
-
-.form-card .btn {
-  display: block;
-  margin: auto;
-}
-
 .form-card .form-footer {
   text-align: center;
   margin-top: 1.3rem;
@@ -150,6 +184,7 @@ input:focus {
 .profile-card {
   margin: 1rem auto;
   padding: 1.8rem;
+  max-width: 750px;
 }
 
 .base-info {
@@ -171,7 +206,7 @@ input:focus {
 }
 
 .profile-card .profile-content h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .profile-card .profile-content .p-number {
@@ -192,7 +227,103 @@ input:focus {
   text-decoration: underline;
 }
 
+.edit-btn {
+  position: absolute;
+  top: 118px;
+  left: 285px;
+  padding: 0 0.3rem;
+  font-size: 0.75rem;
+}
+
+.side-card h4 {
+  font-size: 1.2rem;
+  color: var(--white);
+}
+
+.tags {
+  padding: 0.9rem;
+}
+
+.tags p a {
+  color: var(--primary-color);
+}
+
+.edit input {
+  border-color: var(--primary-color);
+}
+
+.edit input:focus {
+  border-color: var(--secondary-color);
+}
+
+.edit label {
+  font-weight: 100;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#id_bio {
+  color: var(--secondary-color);
+}
+
+#id_profile_image {
+  border: none;
+  padding-left: 0.1rem;
+  margin: 0.5rem 0rem;
+}
+
+.image-upload {
+  margin-bottom: 0.5rem;
+}
+
+.image-upload label {
+  margin-bottom: 0rem;
+}
+
+#id_profile_image::-webkit-file-upload-button {
+  background-color: var(--shadow);
+  border-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  outline: none;
+  font-size: 0.9rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+#id_profile_image::-webkit-file-upload-button:hover,
+#id_profile_image::-webkit-file-upload-button:active {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--shadow);
+}
+
+.wrapper {
+  min-height: calc(100vh - 78px - 64px);
+}
+
+/* Footer */
+footer {
+  color: var(--primary-color);
+  text-align: center;
+  font-weight: bold;
+  padding: 16px 10px;
+}
+
+footer a {
+  color: var(--primary-color);
+}
+
+footer a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
 @media (max-width: 500px) {
+  .home-side-bar {
+    display: none;
+  }
+
   .profile-card {
     margin: 0.6rem auto;
     padding: 1.2rem;
@@ -223,6 +354,24 @@ input:focus {
   }
 
   .profile-card .extra-info .email {
+    font-size: 0.8rem;
+  }
+
+  .edit-btn {
+    top: 80px;
+    left: 205px;
+  }
+
+  .tags {
+    padding: 0.2rem;
+  }
+  .tags p {
+    display: inline;
+    padding: 0rem;
+    margin-right: 0.6rem;
+  }
+
+  footer {
     font-size: 0.8rem;
   }
 }

@@ -1,28 +1,65 @@
-{% extends 'blog/base.html' %} {% load static %}
-<!-- Page title -->
-{% block title %} BlogPoint || Home {% endblock%}
+{% extends 'blog/base.html' %}
 
-<!-- Page content -->
+<!-- Loading static assets -->
+{% load static %}
+
+<!-- Title block -->
+{% block title %} BlogPoint | Home {% endblock%}
+
+<!-- Content block -->
 {% block content %}
 <main class="container mt-3">
-  {% for post in posts %}
-  <div class="card mb-3">
-    <div class="card-tags">
-      <span
-        ><img src="{% static 'blog/img/flash.svg' %}" alt="tags" height="20px"
-      /></span>
-      {% for tag in post.tags.all %}
-      <span>#{{tag}}</span>
+  <div class="row">
+    <div class="col-sm-8 col-12">
+      {% for post in posts %}
+      <div class="card mb-3">
+        <div class="card-tags">
+          <span
+            ><img
+              src="{% static 'blog/img/flash.svg' %}"
+              alt="tags"
+              height="20px"
+          /></span>
+          {% for tag in post.tags.all %}
+          <span><a href="#"> #{{tag}}</a></span>
+          {% endfor %}
+        </div>
+        <div>
+          <h4 class="card-title"><a href="#">{{ post.title }}</a></h4>
+          <p class="card-text">
+            <a href="#" class="post-author">@{{ post.author.username }}</a>
+            <span>{{ post.date_published | date:'F d, Y'}}</span>
+          </p>
+        </div>
+      </div>
       {% endfor %}
     </div>
-    <div>
-      <h4 class="card-title">{{ post.title }}</h4>
-      <p class="card-text">
-        <span class="post-author">@{{ post.author.username }}</span>
-        <span>{{ post.date_published | date:'F d, Y'}}</span>
-      </p>
+
+    <div class="col-sm-4 home-side-bar">
+      <div class="card dark-card side-card">
+        <h4>
+          <img
+            src="{% static 'blog/img/flash.svg' %}"
+            alt="tags"
+            height="30px"
+          />
+          Some trending tags
+        </h4>
+        <div class="tags">
+          {% for tag in tags %}
+          <p><a href="#"> #{{ tag }}</a></p>
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
-  {% endfor %}
 </main>
+{% endblock %}
+
+<!-- Script block -->
+{% block script %}
+<script>
+  const navLink = document.querySelector('.home-link');
+  navLink.style.color = '#fffaff';
+</script>
 {% endblock %}

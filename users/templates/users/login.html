@@ -8,10 +8,10 @@
 BlogPoint | Login
 {% endblock %}
 
-<!-- Main content -->
+<!-- Content block -->
 {% block content %}
 <main class="container">
-	<div class="card dark-card form-card mt-4">
+	<div class="card dark-card form-card mt-4 mb-4">
 	  <h2 class="form-title">
 		<img src="{% static 'blog/img/login.svg' %}" height="35px" alt="login" />
 		Login
@@ -38,9 +38,15 @@ BlogPoint | Login
 	</div>
   </main>
   
-  <script>
-	  const inputTag = document.querySelectorAll('input');
-	  console.log(inputTag[1]);
-	  inputTag[1].setAttribute('autocomplete', 'off');
-  </script>
+{% endblock %}
+
+<!-- Script block -->
+{% block script %}
+<script>
+  const navLink = document.querySelector('.login-link');
+  navLink.style.color = '#fffaff';
+
+  const inputTag = document.querySelectorAll('input');
+  inputTag[1].setAttribute('autocomplete', 'off');
+</script>
 {% endblock %}
